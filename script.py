@@ -103,6 +103,7 @@ def submit(n, headers, json_data):
                     headers=headers
                 )
                 content = get_response.json()
+                print(content['status'])
                 status_code = get_response.status_code
 
                 if status_code in [401, 404, 500]:
@@ -111,11 +112,11 @@ def submit(n, headers, json_data):
                     filenames = get_image_names(start_frame, end_frame)
                     for filename in filenames:
                         download_file_from_plgrid(filename, headers)
+                        time.sleep(5)
                         print(f"Downloaded: {filename}")
+                    print(f"Finished iteration {iteration}.")
                     break
-
-                print(f"Finished iteration {iteration}.")
-        time.sleep(5)
+                time.sleep(5)
 
 
 def main() -> None:
@@ -135,7 +136,7 @@ def main() -> None:
         'working_directory': f"/net/people/plgrid/{os.getenv('USERNAME')}",
     }
 
-    submit(2, headers, json_data)
+    submit(10, headers, json_data)
 
 
 if __name__ == "__main__":
