@@ -112,8 +112,8 @@ def submit(n, headers, json_data):
                     filenames = get_image_names(start_frame, end_frame)
                     for filename in filenames:
                         download_file_from_plgrid(filename, headers)
-                        time.sleep(5)
                         print(f"Downloaded: {filename}")
+                        time.sleep(5)
                     print(f"Finished iteration {iteration}.")
                     break
                 time.sleep(5)
